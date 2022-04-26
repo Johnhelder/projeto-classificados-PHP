@@ -3,7 +3,7 @@
    <div class="container-fluid">
         <div class="jumbotron">
             <h2>Nós temos hoje 999 anúncios</h2>
-            <p>E mais de 999 usuários cadastrados.</p>
+            <p>E mais de 1001 usuários cadastrados.</p>
         </div>
    
    <div class="row">
