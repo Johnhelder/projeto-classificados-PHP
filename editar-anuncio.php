@@ -16,13 +16,19 @@ if(isset($_POST['titulo']) && !empty($_POST['titulo'])){
     $descricao = addslashes($_POST['descricao']);
     $descricao = addslashes($_POST['descricao']);
     $estado = addslashes($_POST['estado']);
+    if(isset($_FILES['fotos'])){
+     $fotos = $_FILES['fotos'];
 
-    $a->addAnuncio($titulo, $categoria, $valor, $descricao, $estado);
+    }else{
+        $fotos = $array();
+    }
+
+    $a->editAnuncio($titulo, $categoria, $valor, $descricao, $estado, $fotos, $_GET['id']);
 
 ?>
 
 <div class="alert alert-success">
-    Produto adicionado com sucesso!
+    Produto editado com sucesso!
 </div>
 <?php
 }
@@ -59,11 +65,12 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
         <div class="form-group">
             <label for="titulo">Titulo:</label>
          <input type="text" name="titulo" id="titulo" class="form-control" value="<?php echo $info['titulo']; ?>">
+         
         </div>
 
         <div class="form-group">
             <label for="valor">Valor:</label>
-         <input type="text" name="valor" id="valor" class="form-control" value="<?php echo $info['valor']; ?>>
+         <input type="text" name="valor" id="valor" class="form-control" value="<?php echo $info['valor']; ?>">
         </div>
 
         <div class="form-group">
@@ -79,7 +86,18 @@ if(isset($_GET['id']) && !empty($_GET['id'])){
             <option value="2" <?php echo ($info['estado']=='2')?'selected="selected"':''; ?>>Ótimo</option>
         </select>
         </div>
-        <input type="submit" value="Editar" class="btn btn-default">
+        <div class="form-group">
+        <label for="add_foto">Fotos do anúncio:</label>
+            <input type="file" name="fotos[]" multiple><br>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Fotos do Anúncio</div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="Editar" class="btn btn-default"><br>
     </form>
 
 </div>
